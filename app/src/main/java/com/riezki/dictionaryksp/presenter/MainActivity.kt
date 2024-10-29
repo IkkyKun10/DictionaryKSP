@@ -14,6 +14,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.riezki.dictionaryksp.presenter.ui.theme.DictionaryKSPTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * @author riezky maisyar
+ */
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
