@@ -1,6 +1,6 @@
 package com.riezki.dictionaryksp.domain.repository
 
-import com.riezki.dictionaryksp.data.remote.model.WordItemDto
+import com.riezki.dictionaryksp.domain.model.WordItem
 import com.riezki.dictionaryksp.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
@@ -9,5 +9,5 @@ import kotlinx.coroutines.flow.Flow
  */
 
 interface DictionaryRepository {
-    fun getWord(word: String): Flow<Resource<WordItemDto>>
+    fun getWord(word: String): Flow<Resource<WordItem>>
 }

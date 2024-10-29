@@ -53,5 +53,9 @@ object AppModule {
         }
     }
 
-
+    @Provides
+    @Singleton
+    fun provideKtorApi(httpClient: HttpClient): KtorApi {
+        return KtorApi(httpClient)
+    }
 }

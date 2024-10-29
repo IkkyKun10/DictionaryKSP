@@ -1,4 +1,4 @@
-package com.riezki.dictionaryksp.ui.theme
+package com.riezki.dictionaryksp.presenter.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

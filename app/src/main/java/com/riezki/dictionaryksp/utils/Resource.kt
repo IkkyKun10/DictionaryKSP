@@ -7,10 +7,10 @@ package com.riezki.dictionaryksp.utils
 sealed class Resource<T>(
     val data: T? = null,
     val message: String? = null,
-    val statusCode: Int = 0
+    val statusCode: ErrorType = ErrorType.UNKNOWN_EXCEPTION
 ) {
     class Success<T>(data: T) : Resource<T>(data)
-    class Error<T>(statusCode: Int, message: String, data: T? = null) : Resource<T>(data, message, statusCode)
+    class Error<T>(statusCode: ErrorType, message: String, data: T? = null) : Resource<T>(data, message, statusCode)
     class Loading<T>(data: T? = null) : Resource<T>(data)
 
     suspend fun onLoading(block: (T?) -> Unit) : Resource<T> {
@@ -23,7 +23,7 @@ sealed class Resource<T>(
         return this
     }
 
-    suspend fun onFailure(block: suspend (Int, String?, T?) -> Unit) : Resource<T> {
+    suspend fun onFailure(block: suspend (ErrorType, String?, T?) -> Unit) : Resource<T> {
         if (this is Error) block(statusCode, message, data)
         return this
     }
@@ -31,9 +31,10 @@ sealed class Resource<T>(
 
 enum class ErrorType {
     CLIENT_EXCEPTION,
-    HTPP_EXCEPTION,
+    HTTP_EXCEPTION,
     SERVER_EXCEPTION,
     UNKNOWN_EXCEPTION,
     IO_EXCEPTION,
-    TIMEOUT_EXCEPTION
+    TIMEOUT_EXCEPTION,
+    SERIALIZATION_EXCEPTION
 }

@@ -12,7 +12,7 @@ import io.ktor.http.path
 
 class KtorApi(private val client: HttpClient) {
 
-    suspend fun getWord(word: String): WordResultDto {
+    suspend fun getWord(word: String): WordResultDto? {
         return client.get {
             url {
                 path(word)
