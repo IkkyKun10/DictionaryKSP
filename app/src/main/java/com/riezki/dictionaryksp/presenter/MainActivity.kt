@@ -42,11 +42,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val viewModel = hiltViewModel<MainViewModel>()
+            val state = viewModel.mainState.collectAsState()
+
             DictionaryKSPTheme {
                 BarColor()
-
-                val viewModel = hiltViewModel<MainViewModel>()
-                val state = viewModel.mainState.collectAsState()
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
