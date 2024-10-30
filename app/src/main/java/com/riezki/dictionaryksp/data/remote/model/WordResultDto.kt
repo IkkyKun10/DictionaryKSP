@@ -1,8 +1,13 @@
 package com.riezki.dictionaryksp.data.remote.model
 
+import kotlinx.serialization.Serializable
+
 
 /**
  * @author riezky maisyar
  */
 
-class WordResultDto : ArrayList<WordItemDto>()
+@Serializable
+data class WordResultDto(
+    val words: List<WordItemDto>
+)

@@ -57,8 +57,8 @@ class DictionaryRepositoryImpl @Inject constructor(
             }
 
             remoteResponseDto?.let { wordResultDto ->
-                wordResultDto[0].let { wordItemDto ->
-                    emit(Resource.Success(wordItemDto.toWordItem()))
+                wordResultDto.words.let { wordItemDto ->
+                    emit(Resource.Success(wordItemDto[0].toWordItem()))
                     return@flow
                 }
             }

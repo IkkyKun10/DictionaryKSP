@@ -1,5 +1,6 @@
 package com.riezki.dictionaryksp.data.remote.api
 
+import com.riezki.dictionaryksp.data.remote.model.WordItemDto
 import com.riezki.dictionaryksp.data.remote.model.WordResultDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -13,11 +14,13 @@ import io.ktor.http.path
 class KtorApi(private val client: HttpClient) {
 
     suspend fun getWord(word: String): WordResultDto? {
-        return client.get {
+        val wordList = client.get {
             url {
                 path(word)
             }
-        }.body()
+        }.body<List<WordItemDto>?>()
+
+        return wordList?.let { WordResultDto(it) }
     }
 
     companion object {
